@@ -12,12 +12,12 @@ async function validateUser(req, res, next) {
     await schema.validateAsync(req.body, { abortEarly: false });
     next();
   } catch (error) {
-    const formatedError = error.details.map((detail) => ({
+    const err = error.details.map((detail) => ({
       message: detail.message,
       field: detail.context.key,
     }));
     return res.status(400).send({
-      formatedError,
+      err,
     });
   }
 }

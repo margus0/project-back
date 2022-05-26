@@ -1,5 +1,5 @@
 const mysql = require('mysql2/promise');
-const dbConfig = require('../configs');
+const { dbConfig } = require('../configs');
 
 async function insertNewUserToDb(email, password) {
   try {

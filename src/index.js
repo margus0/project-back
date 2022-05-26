@@ -3,8 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const userRouter = require('./routes/userRoutes');
+const productRouter = require('./routes/productRoutes');
 
-const port = process.env.PORT;
+const { serverPort } = require('./configs');
 
 const app = express();
 
@@ -13,11 +14,12 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.use('/', userRouter);
+app.use('/', productRouter);
 
 app.all('*', (req, res) => {
   res.status(404).send({ error: 'Page not found' });
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(serverPort, () => {
+  console.log(`Server is running on port ${serverPort}`);
 });
