@@ -14,7 +14,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.use('/', userRouter);
-app.use('/', productRouter);
+app.use('/auth', productRouter);
 
 app.all('*', (req, res) => {
   res.status(404).send({ error: 'Page not found' });

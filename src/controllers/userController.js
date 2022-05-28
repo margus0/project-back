@@ -35,7 +35,7 @@ async function findUser(req, res) {
     return res.status(400).send({ err: 'Incorrect password or email' });
   }
   const token = jwt.sign({ userId: foundData[0].id }, jwtSecret, {
-    expiresIn: '24h',
+    expiresIn: '1h',
   });
   return res.send({ msg: 'Login successful', token });
 }
