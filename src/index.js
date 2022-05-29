@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const userRouter = require('./routes/userRoutes');
 const productRouter = require('./routes/productRoutes');
+const cartRouter = require('./routes/cartRouter');
 
 const { serverPort } = require('./configs');
 
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use('/', userRouter);
 app.use('/auth', productRouter);
+app.use('/auth', cartRouter);
 
 app.all('*', (req, res) => {
   res.status(404).send({ error: 'Page not found' });

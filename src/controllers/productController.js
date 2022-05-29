@@ -9,7 +9,7 @@ async function getCategories(req, res) {
     });
   }
 
-  return res.send({ data: foundData });
+  return res.status(200).send({ data: foundData });
 }
 
 async function getItems(req, res) {
@@ -21,7 +21,7 @@ async function getItems(req, res) {
     });
   }
 
-  return res.send({ data: foundData });
+  return res.status(200).send({ data: foundData });
 }
 
 module.exports = { getCategories, getItems };

@@ -1,12 +1,15 @@
 const mysql = require('mysql2/promise');
 const { dbConfig } = require('../configs');
 
-async function getCatFromDb() {
+async function insertItemIntoCartDb(id) {
   try {
     const conn = await mysql.createConnection(dbConfig);
-    const sql = `
-    SELECT category FROM items`;
-    const [data] = await conn.execute(sql);
+    const [data] = await conn.execute(`
+    INSERT INTO cart (id, name, price, image)
+    SELECT id, name, price, img
+    FROM items
+    WHERE id = (${mysql.escape(id)})
+    LIMIT 1`);
     await conn.close();
     console.log('data ===', data);
     return data;
@@ -16,12 +19,14 @@ async function getCatFromDb() {
   }
 }
 
-async function getItemsFromDb() {
+async function removeItemsFromCartdDb(id) {
   try {
     const conn = await mysql.createConnection(dbConfig);
     const sql = `
-    SELECT * FROM items`;
-    const [data] = await conn.execute(sql);
+    DELETE FROM cart
+    WHERE id = ?
+    LIMIT 1`;
+    const [data] = await conn.execute(sql, [id]);
     await conn.close();
     console.log('data ===', data);
     return data;
@@ -31,4 +36,7 @@ async function getItemsFromDb() {
   }
 }
 
-module.exports = { getCatFromDb, getItemsFromDb };
+module.exports = {
+  insertItemIntoCartDb,
+  removeItemsFromCartdDb,
+};
