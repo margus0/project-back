@@ -4,12 +4,13 @@ const { dbConfig } = require('../configs');
 async function insertItemIntoCartDb(id) {
   try {
     const conn = await mysql.createConnection(dbConfig);
-    const [data] = await conn.execute(`
+    const sql = `
     INSERT INTO cart (id, name, price, image)
     SELECT id, name, price, img
     FROM items
-    WHERE id = (${mysql.escape(id)})
-    LIMIT 1`);
+    WHERE id = ?
+    LIMIT 1`;
+    const [data] = await conn.execute(sql, [id]);
     await conn.close();
     console.log('data ===', data);
     return data;
