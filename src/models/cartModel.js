@@ -37,7 +37,23 @@ async function removeItemsFromCartdDb(id) {
   }
 }
 
+async function getItemsFromCartDb() {
+  try {
+    const conn = await mysql.createConnection(dbConfig);
+    const sql = `
+    SELECT * FROM cart`;
+    const [data] = await conn.execute(sql);
+    await conn.close();
+    console.log('data ===', data);
+    return data;
+  } catch (error) {
+    console.log('error ===', error);
+    return error;
+  }
+}
+
 module.exports = {
   insertItemIntoCartDb,
   removeItemsFromCartdDb,
+  getItemsFromCartDb,
 };

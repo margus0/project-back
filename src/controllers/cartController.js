@@ -1,6 +1,7 @@
 const {
   insertItemIntoCartDb,
   removeItemsFromCartdDb,
+  getItemsFromCartDb,
 } = require('../models/cartModel');
 
 async function insertItemToCart(req, res) {
@@ -27,7 +28,13 @@ async function removeItemsFromCart(req, res) {
   return res.send({ msg: 'Removed successfully', result });
 }
 
+async function getItemsFromCart(req, res) {
+  const foundResult = await getItemsFromCartDb();
+  return res.send({ data: foundResult });
+}
+
 module.exports = {
   insertItemToCart,
   removeItemsFromCart,
+  getItemsFromCart,
 };
