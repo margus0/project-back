@@ -7,7 +7,6 @@ module.exports = (req, res, next) => {
     req.user = jwt.verify(token, jwtSecret);
     return next();
   } catch (err) {
-    console.log(err);
     return res.status(401).send({ err: 'Validation failed' });
   }
 };

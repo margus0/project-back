@@ -8,10 +8,8 @@ async function getCatFromDb() {
     SELECT category FROM items`;
     const [data] = await conn.execute(sql);
     await conn.close();
-    console.log('data ===', data);
     return data;
   } catch (error) {
-    console.log('error ===', error);
     return error;
   }
 }
@@ -23,10 +21,8 @@ async function getItemsFromDb() {
     SELECT * FROM items`;
     const [data] = await conn.execute(sql);
     await conn.close();
-    console.log('data ===', data);
     return data;
   } catch (error) {
-    console.log('error ===', error);
     return error;
   }
 }

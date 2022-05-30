@@ -14,7 +14,6 @@ async function getCategories(req, res) {
 
 async function getItems(req, res) {
   const foundData = await getItemsFromDb();
-  console.log('foundData ===', foundData);
   if (!foundData) {
     return res.status(500).send({
       err: 'Server issue please try later',

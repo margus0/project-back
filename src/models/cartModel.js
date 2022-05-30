@@ -12,10 +12,8 @@ async function insertItemIntoCartDb(id) {
     LIMIT 1`;
     const [data] = await conn.execute(sql, [id]);
     await conn.close();
-    console.log('data ===', data);
     return data;
   } catch (error) {
-    console.log('error ===', error);
     return error;
   }
 }
@@ -29,10 +27,8 @@ async function removeItemsFromCartdDb(id) {
     LIMIT 1`;
     const [data] = await conn.execute(sql, [id]);
     await conn.close();
-    console.log('data ===', data);
     return data;
   } catch (error) {
-    console.log('error ===', error);
     return error;
   }
 }
@@ -44,10 +40,8 @@ async function getItemsFromCartDb() {
     SELECT * FROM cart`;
     const [data] = await conn.execute(sql);
     await conn.close();
-    console.log('data ===', data);
     return data;
   } catch (error) {
-    console.log('error ===', error);
     return error;
   }
 }
