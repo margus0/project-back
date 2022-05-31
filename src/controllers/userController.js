@@ -9,7 +9,7 @@ async function createNewUser(req, res) {
   const insertResult = await insertNewUserToDb(email, hashPassword);
   if (insertResult.code === 'ER_DUP_ENTRY') {
     return res.status(400).send({
-      msg: `Duplicate entry ${email} for key 'email'`,
+      err: `Duplicate entry ${email} for key 'email'`,
     });
   }
   if (!insertResult.insertId) {
@@ -27,6 +27,7 @@ async function findUser(req, res) {
     return res.status(400).send({ err: 'Email or password is missing' });
   }
   const foundData = await findUserInDb(email);
+  console.log('foundData ===', foundData);
   if (!foundData) {
     return res.status(400).send({ err: 'Incorrect password or email' });
   }
