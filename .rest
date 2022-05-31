@@ -1,18 +1,37 @@
 ###
-POST http://localhost:3000/register
+POST http://localhost:8080/register
 Content-Type: application/json
 
 {
-    "email": "130@gmail.com",
-    "password": "sec123",
-    "re_password": "sec123"
+    "email": "email@email.com",
+    "password": "secret",
+    "re_password": "secret"
 }
 ###
 
-POST http://localhost:3000/login
+POST http://localhost:8080/login
 Content-Type: application/json
 
 {
     "email": "margus@gmail.com",
     "password": "secret125"
 }
+###
+
+GET http://localhost:8080/auth/items
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUwLCJpYXQiOjE2NTM5MDQzMTYsImV4cCI6MTY1MzkwNzkxNn0.nQioFg4m5Yca_pb88ZAI2RcignVIvP4jBrI5JlB2uLA
+###
+GET http://localhost:8080/auth/categories
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUwLCJpYXQiOjE2NTM5MTI5OTksImV4cCI6MTY1MzkxNjU5OX0.mogfF5X41N2D_UxVy1fr2TMDvPMxkaZk4kBCe439Aeg
+###
+POST http://localhost:8080/auth/cart/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUwLCJpYXQiOjE2NTM5MTI5OTksImV4cCI6MTY1MzkxNjU5OX0.mogfF5X41N2D_UxVy1fr2TMDvPMxkaZk4kBCe439Aeg
+
+###
+DELETE http://localhost:8080/auth/cart/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUwLCJpYXQiOjE2NTM5Mjg3NDIsImV4cCI6MTY1MzkzMjM0Mn0.v1MYjd6W5ZKdw5D5TBwRpwdqtukbxlo144vjPfiQmA8
+###
+GET http://localhost:8080/auth/cart
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUwLCJpYXQiOjE2NTM5MjA5NjMsImV4cCI6MTY1MzkyNDU2M30.svWMtOGK-ISE7FTSMZBPxtEQC_f0g0EDNHzHfsXD8ro
