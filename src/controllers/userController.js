@@ -7,6 +7,7 @@ async function createNewUser(req, res) {
   const { email, password } = req.body;
   const hashPassword = bcrypt.hashSync(password, 10);
   const insertResult = await insertNewUserToDb(email, hashPassword);
+
   if (insertResult.code === 'ER_DUP_ENTRY') {
     return res.status(400).send({
       err: `Duplicate entry ${email} for key 'email'`,

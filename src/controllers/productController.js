@@ -1,16 +1,4 @@
-const { getCatFromDb, getItemsFromDb } = require('../models/productsModel');
-
-async function getCategories(req, res) {
-  const foundData = await getCatFromDb();
-
-  if (!foundData) {
-    return res.status(500).send({
-      err: 'Server issue please try later',
-    });
-  }
-
-  return res.status(200).send({ data: foundData });
-}
+const { getItemsFromDb } = require('../models/productsModel');
 
 async function getItems(req, res) {
   const foundData = await getItemsFromDb();
@@ -23,4 +11,4 @@ async function getItems(req, res) {
   return res.status(200).send({ data: foundData });
 }
 
-module.exports = { getCategories, getItems };
+module.exports = { getItems };
